@@ -1,0 +1,60 @@
+.header {
+	text-align:center;
+	height: 100px;
+}
+.resources {
+	text-align:center;
+	font-size: 30px;
+}
+.bassicon {
+	background:url(/img/bass.png);
+	height:100px;
+	width:100px;
+	display: inline;
+}
+.rhythmicon {
+	background:url(/img/rhythm.png);
+	height:100px;
+	width:100px;
+	display: inline;
+}
+.drumicon {
+	background:url(/img/drum.png);
+	curson: pointer;
+	height:100px;
+	width:100px;
+	display: inline;
+}
+.leadicon {
+	background:url(/img/lead.png);
+	height:100px;
+	width:100px;
+	display: inline;
+}
+.managericon {
+	background:url(/img/manager.png);
+	height:100px;
+	width:100px;
+	display: inline;
+}
+.info {
+	width: 400px;
+	height: 700px;
+	padding: 20px;
+	background-color: grey;
+	display:inline-block;
+	position: absolute;
+	float: left;
+}
+.upgrades {
+	width: 1400px;
+	padding: 20px;
+	background-color: grey;
+	display:inline-block;
+	float: right;
+}
+.snare,.hihat,.cymbals,.tomtoms {
+	width: 350px;
+	padding: 10px;
+	display: inline-block;
+}
