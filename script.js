@@ -1,4 +1,5 @@
 var drum = {
+	cost: 0,
 	snare: {
 		total: 0,
 		cost: 5,
@@ -29,13 +30,37 @@ var drum = {
 		nextmultiplier: 0
 	}
 };
-
+var guitar = {
+	fansneeded: 0,
+	total: 0,
+	cost: 0,
+	multiplier: 0,
+	nextmultiplier: 0,
+	pickofdestiny: 0
+}
+var bass = {
+	fansneeded: 0,
+	cost: 0,
+	strings: {
+		total: 0,
+		cost: 0,
+		multiplier: 0,
+		nextmultiplier: 0
+	}
+}
+var manager = {
+	cost: 0,
+	fansneeded: 0
+}
 var fans = 0;
 var clicks = 0;
 var dollars = 0;
 var beat=0;
 var beatsperfan=16;
+
 var venue = "basement";
+//basement, lounge, pub, gig, concert
+
 $(document).ready(function () {
 beginTick();
 updateValues();
@@ -126,8 +151,10 @@ function updateValues(){
 	document.getElementById('cymbalscost').innerHTML = drum.cymbals.cost;
 	document.getElementById('tomtomsmulti').innerHTML = drum.tomtoms.nextmultiplier;
 	document.getElementById('tomtomscost').innerHTML = drum.tomtoms.cost;
+	document.getElementById('guitarcost').innerHTML = guitar.cost;
+	document.getElementById('guitarmulti').innerHTML = guitar.nextmultiplier;
+	if(guitar.total) document.getElementById('guitartext').innerHtml = 'Upgrade';
 }
-
 
 function tick() {
     dollars+=fans*drum.cymbals.multiplier;
