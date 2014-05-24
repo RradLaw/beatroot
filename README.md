@@ -15,5 +15,6 @@ To do:
 	<li>Have proper sizes to deal with other resolutions</li>
 	<li>sound?</li>
 	<li>more venues</li>
+	<li>Deal with many autobeats properly</li>
 	<li>Limit upgrades dependent on current fans</li>
 </ul>

@@ -26,11 +26,9 @@
 	<span id="fans">0</span> fans |
 	$<span id="dollars">0</span>
 	<br>
-	<span id="bpf">0</span> beats per cycle |
-	<span id="fpbc">0</span> fan<span id="s"></span> per beat cycle |
-	<span id="fps">0</span> fans per second | 
-	$<span id="dpf">0</span> per fan every second |
-	<span id="bpa">0</span> autobeats per second
+		<button type="button" id="statstab" onmousedown='return false;'>Stats</button>
+		<button type="button" id="infotab" onmousedown='return false;'>Info</button>
+	<br>
 
 </div>
 <hr>
@@ -38,8 +36,24 @@
 	<div class="info">
 		<h2>Information:</h2>
 		<div id="information"><p></p></div>
-		
 	</div>
+
+	<!--redo this in js-->
+	<div class="stats hidden">
+		<h2>Stats:</h2>
+		<div id="statistics">
+			<span id="bpf">0</span> beats per cycle
+			<br>
+			<span id="fpbc">0</span> fan<span id="s"></span> per beat cycle 
+			<br>
+			<span id="fps">0</span> fans per second 
+			<br>
+			$<span id="dpf">0</span> per fan every second 
+			<br>
+			<span id="bpa">0</span> autobeats per second
+		<p></p></div>
+	</div>
+
 	<div class="drumupgrades">
 
 		<div class="snare">

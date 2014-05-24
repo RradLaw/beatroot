@@ -138,6 +138,7 @@ $('#buydrumsticks').click(function() {
 		dollars-=drum.sticks.cost;
 		drum.sticks.total++;
 		beatsperfan-=drum.sticks.multiplier;
+		$('.drumsticks').addClass('hidden');
 		updateValues();
 	} else{
 		$("#information").prepend($('<p>You can\'t afford that.</p>').fadeIn('slow'));
@@ -171,10 +172,20 @@ $('#buypick').click(function() {
 		dollars-=pick.cost;
 		pick.pickofdestiny++;
 		pick.multiplier*=0.5;
+		$('.buypick').addClass('hidden');
 		updateValues();
 	} else{
 		$("#information").prepend($('<p>You can\'t afford that.</p>').fadeIn('slow'));
 	}	
+});
+
+$('#statstab').click(function(){
+		$('.info').addClass('hidden');
+		$('.stats').removeClass('hidden');
+});
+$('#infotab').click(function(){
+		$('.stats').addClass('hidden');
+		$('.info').removeClass('hidden');
 });
 
 function beginTick() {

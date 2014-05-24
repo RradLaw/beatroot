@@ -28,17 +28,26 @@ img {
 	width:100px;
 	display: inline;
 }
-.info {
+.info,.stats {
 	background-color: rgba(255,255,255,.75);
 	width: 400px;
 	height: 550px;
 	padding: 20px;
 	display:inline-block;
-	position: absolute;
+	position: static;
 	float: left;
 	overflow: hidden;
 }
-.information {
+.buttontabs {
+	background-color: rgba(255,255,255,.75);
+	width: 400px;
+	height: 50px;
+	float:left;
+	position: static;
+	display:inline-block;
+}
+.information,.statistics {
+	display:inline-block;
 	max-height:450px;
 	height:450px;
 }
@@ -55,4 +64,8 @@ img {
 	height: 150px;
 	padding: 10px;
 	display: inline-block;
+}
+.hidden{
+	display: none;
+  	visibility: hidden;
 }
