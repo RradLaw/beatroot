@@ -28,7 +28,7 @@ img {
 	width:100px;
 	display: inline;
 }
-.info,.stats {
+.info,.stats,.gear,.help {
 	background-color: rgba(255,255,255,.75);
 	width: 400px;
 	height: 550px;
@@ -38,6 +38,9 @@ img {
 	float: left;
 	overflow: hidden;
 }
+.gear{
+	overflow:scroll;
+}
 .buttontabs {
 	background-color: rgba(255,255,255,.75);
 	width: 400px;
@@ -46,7 +49,7 @@ img {
 	position: static;
 	display:inline-block;
 }
-.information,.statistics {
+.information,.statistics,.currentgear,.helpp {
 	display:inline-block;
 	max-height:450px;
 	height:450px;

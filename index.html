@@ -28,6 +28,8 @@
 	<br>
 		<button type="button" id="statstab" onmousedown='return false;'>Stats</button>
 		<button type="button" id="infotab" onmousedown='return false;'>Info</button>
+		<button type="button" id="geartab" onmousedown='return false;'>Gear</button>
+		<button type="button" id="helptab" onmousedown='return false;'>Help</button>
 	<br>
 
 </div>
@@ -52,6 +54,16 @@
 			<br>
 			<span id="bpa">0</span> autobeats per second
 		<p></p></div>
+	</div>
+
+	<div class="gear hidden">
+		<h2>Current Gear:</h2>
+		<div id="currentgear"><span id="geartexts">a</span></div>
+	</div>
+
+	<div class="help hidden">
+		<h2>Help</h2>
+		<div id="helpp">Help not yet implemented.</div>
 	</div>
 
 	<div class="drumupgrades">
@@ -89,23 +101,23 @@
 			<br>
 			Cost: $<span id="tomtomscost">0</span>
 			<br>
-			Effect: Collect <span id="tomtomsmulti">0</span> fans every second.
+			Effect: <span id="tomtomsmulti">0</span> new fans every second.
 		</div>
 
-		<div class="drumsticks">
+		<div class="drumsticks hidden">
 			<img src="img/drumsticks.png" id="buydrumsticks" draggable="false" height="100px" align="left">
 			<!--temp drumsticks from http://img1.wikia.nocookie.net/__cb20131013153019/clubpenguin/images/d/dd/Drumsticks_clothing_icon_ID_340.png and http://superpixeltime.com/-->
 			<b>Buy new Drumsticks</b>
 			<br>
 			Cost: $<span id="drumstickscost">0</span>
 			<br>
-			Effect: Beats per cycle reduced by 1.
+			Effect: Beats per click doubled.
 		</div>
 
 	</div>
 	<div class="guitarupgrades">
 		<hr>
-		<div class="buyguitar">
+		<div class="buyguitar hidden">
 			<img src="img/guitar.png" id="buyguitar" draggable="false" height="100px" align="left">
 			<!--temporary guitar from http://makepixelart.com/artists/sebastian/guitar_2-->
 			<b><span id="guitartext">Buy</span> Guitar</b>
@@ -114,7 +126,7 @@
 			<br>
 			Effect: Increases autobeats to <span id="guitarmulti">0</span> beats every second.
 		</div>
-		<div class="buypick">
+		<div class="buypick hidden">
 			<img src="img/pick.gif" id="buypick" draggable="false" height="100px" align="left">
 			<!--temporary guitar from http://makepixelart.com/artists/sebastian/guitar_2-->
 			<b>Buy Pick of Destiny</b>
@@ -123,7 +135,7 @@
 			<br>
 			Effect: Halves the beats per cycle.
 		</div>
-		<div class="buybass">
+		<div class="buybass hidden">
 			<img src="img/bass.png" id="buybass" draggable="false" height="100px" align="left">
 			<b><span id="basstext">Buy</span> Bass</b>
 			<br>
