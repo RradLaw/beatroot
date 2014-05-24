@@ -2,18 +2,22 @@ var drum = {
 	cost: 0,
 	snare: {
 		total: 0,
+		basecost: 20,
 		cost: 20,
 		multiplier: 0,
 		nextmultiplier: 1
 	},
 	hihat: {
 		total: 0,
+		basecost: 100,
 		cost: 100,
 		multiplier: 1,
 		nextmultiplier: 2,
 		fansneeded: 0,
 	},
 	cymbals: {
+		total: 0,
+		basecost: 1000,
 		cost: 1000,
 		multiplier: 1,
 		nextmultiplier: 2,
@@ -21,22 +25,25 @@ var drum = {
 	},
 	tomtoms: {
 		total: 0,
-		cost: 5000,
+		basecost:2500,
+		cost: 2500,
 		multiplier: 0,
 		nextmultiplier: 1,
 		fansneeded: 0,
 	},
 	sticks: {
 		total: 0,
+		basecost:150,
 		cost: 150,
 		multiplier: 1,
 		nextmultiplier: 2,
-		fansneeded: 1,
+		fansneeded: 10,
 	},
 };
 var guitar = {
-	fansneeded: 50,
+	fansneeded: 500,
 	total: 0,
+	basecost:5000,
 	cost: 5000,
 	multiplier: 1,
 	nextmultiplier: 2
@@ -48,7 +55,8 @@ var pick = {
 	fansneeded: 2000
 };
 var bass = {
-	fansneeded: 500,
+	fansneeded: 1000,
+	basecost: 100000,
 	cost: 100000,
 	total: 0,
 	multiplier: 1,
@@ -63,7 +71,7 @@ var beatsperfan=16;
 var hidden=0;
 
 var venue = "basement";
-//basement, lounge, pub, gig, concert
+//basement, shed, pub, gig, concert
 
 $(document).ready(function () {
 beginTick();
@@ -80,7 +88,7 @@ $('#upgradehihat').click(function() {
 	if(dollars>=drum.hihat.cost){
 		dollars-=drum.hihat.cost;
 		drum.hihat.total++;
-		drum.hihat.cost*=3;
+		drum.hihat.cost=drum.hihat.cost*1.5^drum.hihat.total;
 		drum.hihat.multiplier=drum.hihat.nextmultiplier;
 		drum.hihat.nextmultiplier++;
 		updateValues();
@@ -93,7 +101,7 @@ $('#upgradesnare').click(function() {
 	if(dollars>=drum.snare.cost){
 		dollars-=drum.snare.cost;
 		drum.snare.total++;
-		drum.snare.cost=Math.floor(1.5*drum.snare.cost);
+		drum.snare.cost=drum.snare.cost*1.5^drum.snare.total;
 		drum.snare.multiplier=drum.snare.nextmultiplier;
 		drum.snare.nextmultiplier++;
 		updateValues();
@@ -106,7 +114,7 @@ $('#upgradecymbals').click(function() {
 	if(dollars>=drum.cymbals.cost){
 		dollars-=drum.cymbals.cost;
 		drum.cymbals.total++;
-		drum.cymbals.cost*=2;
+		drum.cymbals.cost=drum.cymbals.cost*1.5^drum.cymbals.total;
 		drum.cymbals.multiplier=drum.cymbals.nextmultiplier;
 		drum.cymbals.nextmultiplier++;
 		updateValues();
@@ -119,7 +127,7 @@ $('#upgradetomtoms').click(function() {
 	if(dollars>=drum.tomtoms.cost){
 		dollars-=drum.tomtoms.cost;
 		drum.tomtoms.total++;
-		drum.tomtoms.cost*=2;
+		drum.tomtoms.cost=drum.tomtoms.cost*1.5^drum.tomtoms.total;
 		drum.tomtoms.multiplier=drum.tomtoms.nextmultiplier;
 		drum.tomtoms.nextmultiplier++;
 		updateValues();
