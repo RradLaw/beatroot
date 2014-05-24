@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>JAM++ game</title>
+	<title>JAM++ Game</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<!--link rel="shortcut icon" href="favicon.ico"-->
 
@@ -13,13 +13,12 @@
 	<script type="text/javascript" src="script.js"></script>
 </head>
 
-<body>
+<body background="img/bg.png">
 <div class="header">
-	<!--div class="bassicon"></div>
-	<div class="rhythmicon"></div-->
+	<!--div class="bassicon"></div-->
 	<div class="drumicon"><img id="drum" src="img/drum.png" draggable="false"></div>
 	<!--borrowed from http://piq.codeus.net/static/media/userpics/piq_41877_400x400.png-->
-	<!--div class="leadicon"></div>
+	<!--div class="guitaricon"></div>
 	<div class="managericon"></div-->
 </div>
 <hr>
@@ -40,7 +39,7 @@
 		<div id="information"><p></p></div>
 		
 	</div>
-	<div class="upgrades">
+	<div class="drumupgrades">
 
 		<div class="snare">
 			<img src="img/snare.png" id="upgradesnare" draggable="false" height="100px" align="left">
@@ -77,6 +76,12 @@
 			<br>
 			Effect: Collect <span id="tomtomsmulti">0</span> fans every second.
 		</div>
-
 	</div>
+
+	<div class="guitarupgrades">
+		<div class="buyguitar"></div>
+	</div>	
 </div>
+
+</body>
+</html>

@@ -12,3 +12,4 @@ To do:
 	Add saving game and stats menu
 	Tweak numbers
 	Add more instruments
+	Have proper sizes to deal with other resolutions

@@ -1,60 +1,58 @@
+/** {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}*/
+img {
+	padding: 5px;
+}
 .header {
+	background-color: rgba(255,255,255,.75);
 	text-align:center;
 	height: 100px;
 }
 .resources {
+	background-color: rgba(255,255,255,.75);
 	text-align:center;
+	background-size: contain;
 	font-size: 30px;
 }
-.bassicon {
-	background:url(/img/bass.png);
-	height:100px;
-	width:100px;
-	display: inline;
+.drumicon,#upgradetomtoms,#upgradesnare,#upgradehihat,#upgradecymbals{
+	cursor: pointer;
 }
-.rhythmicon {
-	background:url(/img/rhythm.png);
-	height:100px;
-	width:100px;
-	display: inline;
-}
-.drumicon {
-	background:url(/img/drum.png);
-	curson: pointer;
-	height:100px;
-	width:100px;
-	display: inline;
-}
-.leadicon {
-	background:url(/img/lead.png);
-	height:100px;
-	width:100px;
-	display: inline;
-}
-.managericon {
-	background:url(/img/manager.png);
+.bassicon,.guitaricon,.drumicon,.managericon {
 	height:100px;
 	width:100px;
 	display: inline;
 }
 .info {
+	background-color: rgba(255,255,255,.75);
 	width: 400px;
-	height: 700px;
+	height: 550px;
 	padding: 20px;
-	background-color: grey;
 	display:inline-block;
 	position: absolute;
 	float: left;
+	overflow: hidden;
 }
-.upgrades {
+.information {
+	max-height:450px;
+	height:450px;
+}
+.drumupgrades {
+	background-color: rgba(255,255,255,.75);
 	width: 1400px;
 	padding: 20px;
-	background-color: grey;
 	display:inline-block;
 	float: right;
 }
 .snare,.hihat,.cymbals,.tomtoms {
+	float: left;
 	width: 350px;
+	height: 150px;
 	padding: 10px;
 	display: inline-block;
 }
