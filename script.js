@@ -2,7 +2,7 @@ var drum = {
 	cost: 0,
 	snare: {
 		total: 0,
-		cost: 5,
+		cost: 20,
 		multiplier: 0,
 		nextmultiplier: 1
 	},
@@ -23,6 +23,11 @@ var drum = {
 		multiplier: 0,
 		nextmultiplier: 1
 	},
+	sticks: {
+		total: 0,
+		cost: 2000,
+		multiplier: 1
+	},
 	upgrade: {
 		total: 0,
 		cost: 0,
@@ -33,14 +38,18 @@ var drum = {
 var guitar = {
 	fansneeded: 0,
 	total: 0,
-	cost: 0,
-	multiplier: 0,
-	nextmultiplier: 0,
-	pickofdestiny: 0
-}
+	cost: 5000,
+	multiplier: 1,
+	nextmultiplier: 2
+};
+var pick = {
+	pickofdestiny: 0,
+	cost: 1000000,
+	multiplier: 1
+};
 var bass = {
 	fansneeded: 0,
-	cost: 0,
+	cost: 100000,
 	strings: {
 		total: 0,
 		cost: 0,
@@ -124,43 +133,98 @@ $('#upgradetomtoms').click(function() {
 	}	
 });
 
+$('#buydrumsticks').click(function() {
+	if(dollars>=drum.sticks.cost){
+		dollars-=drum.sticks.cost;
+		drum.sticks.total++;
+		beatsperfan-=drum.sticks.multiplier;
+		updateValues();
+	} else{
+		$("#information").prepend($('<p>You can\'t afford that.</p>').fadeIn('slow'));
+	}	
+});
+
+$('#buyguitar').click(function() {
+	if(dollars>=guitar.cost){
+		dollars-=guitar.cost;
+		guitar.total++;
+		guitar.multiplier++;
+		updateValues();
+	} else{
+		$("#information").prepend($('<p>You can\'t afford that.</p>').fadeIn('slow'));
+	}	
+});
+
+$('#buybass').click(function() {
+	if(dollars>=bass.cost){
+		dollars-=bass.cost;
+		bass.total++;
+		beatsperfan-=drum.sticks.multiplier;
+		updateValues();
+	} else{
+		$("#information").prepend($('<p>You can\'t afford that.</p>').fadeIn('slow'));
+	}	
+});
+
+$('#buypick').click(function() {
+	if(dollars>=pick.cost){
+		dollars-=pick.cost;
+		pick.pickofdestiny++;
+		pick.multiplier*=0.5;
+		updateValues();
+	} else{
+		$("#information").prepend($('<p>You can\'t afford that.</p>').fadeIn('slow'));
+	}	
+});
+
 function beginTick() {
     nIntervId = setInterval(tick, 1000);
 }
 
 function beats() {
-	if(beat>=beatsperfan){
+	if(beat>=Math.floor(beatsperfan*pick.multiplier)){
 		beat=0;
 		fans+=drum.hihat.multiplier;
 	}
 }
 function updateValues(){
-	document.getElementById('beat').innerHTML= beat;
-	document.getElementById('fans').innerHTML= fans;
-	document.getElementById('dollars').innerHTML= dollars;
-	document.getElementById('bpf').innerHTML= beatsperfan;
-	document.getElementById('bpf2').innerHTML= beatsperfan;
-	document.getElementById('dpf').innerHTML = drum.cymbals.multiplier;
-	document.getElementById('fpbc').innerHTML = drum.hihat.multiplier;
+	document.getElementById('beat').innerHTML= beutify(beat);
+	document.getElementById('fans').innerHTML= beutify(fans);
+	document.getElementById('dollars').innerHTML= beutify(dollars);
+	document.getElementById('bpf').innerHTML= beutify(Math.floor(beatsperfan*pick.multiplier));//make sure it cannot go below 1
+	document.getElementById('bpf2').innerHTML= beutify(beatsperfan);
+	document.getElementById('dpf').innerHTML = beutify(drum.cymbals.multiplier);
+	document.getElementById('fpbc').innerHTML = beutify(drum.hihat.multiplier);
 	if(drum.snare.multiplier!=1) document.getElementById('s').innerHTML = 's';
-	document.getElementById('hihatmulti').innerHTML = drum.hihat.nextmultiplier;
-	document.getElementById('hihatcost').innerHTML = drum.hihat.cost;
-	document.getElementById('snaremulti').innerHTML = drum.snare.nextmultiplier;
-	document.getElementById('snarecost').innerHTML = drum.snare.cost;
-	document.getElementById('cymbalsmulti').innerHTML = drum.cymbals.nextmultiplier;
-	document.getElementById('cymbalscost').innerHTML = drum.cymbals.cost;
-	document.getElementById('tomtomsmulti').innerHTML = drum.tomtoms.nextmultiplier;
-	document.getElementById('tomtomscost').innerHTML = drum.tomtoms.cost;
-	document.getElementById('guitarcost').innerHTML = guitar.cost;
-	document.getElementById('guitarmulti').innerHTML = guitar.nextmultiplier;
-	if(guitar.total) document.getElementById('guitartext').innerHtml = 'Upgrade';
+	document.getElementById('hihatmulti').innerHTML = beutify(drum.hihat.nextmultiplier);
+	document.getElementById('hihatcost').innerHTML = beutify(drum.hihat.cost);
+	document.getElementById('snaremulti').innerHTML = beutify(drum.snare.nextmultiplier);
+	document.getElementById('snarecost').innerHTML = beutify(drum.snare.cost);
+	document.getElementById('cymbalsmulti').innerHTML = beutify(drum.cymbals.nextmultiplier);
+	document.getElementById('cymbalscost').innerHTML = beutify(drum.cymbals.cost);
+	document.getElementById('tomtomsmulti').innerHTML = beutify(drum.tomtoms.nextmultiplier);
+	document.getElementById('tomtomscost').innerHTML = beutify(drum.tomtoms.cost);
+	document.getElementById('guitarcost').innerHTML = beutify(guitar.cost);
+	document.getElementById('guitarmulti').innerHTML = beutify(guitar.nextmultiplier);
+	document.getElementById('basscost').innerHTML = beutify(bass.cost);
+	document.getElementById('fps').innerHTML = beutify(drum.tomtoms.multiplier);
+	document.getElementById('bpa').innerHTML = beutify(drum.snare.multiplier*guitar.multiplier);
+	document.getElementById('drumstickscost').innerHTML = beutify(drum.sticks.cost);
+	document.getElementById('guitarmulti').innerHTML = beutify(guitar.nextmultiplier);
+	document.getElementById('pickcost').innerHTML = beutify(pick.cost);
+	if(guitar.total>0) document.getElementById('guitartext').innerHtml = 'Upgrade';
+}
+
+function beutify(x){
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 function tick() {
     dollars+=fans*drum.cymbals.multiplier;
-    beat+=drum.snare.multiplier;
+    beat+=drum.snare.multiplier*guitar.multiplier;
    	fans+=drum.tomtoms.multiplier;
     beats();
 	updateValues();
 }
+
 });

@@ -20,7 +20,7 @@ img {
 	background-size: contain;
 	font-size: 30px;
 }
-.drumicon,#upgradetomtoms,#upgradesnare,#upgradehihat,#upgradecymbals{
+.drumicon,#upgradetomtoms,#upgradesnare,#upgradehihat,#upgradecymbals,#buybass,#buyguitar,#buydrumsticks,#buypick{
 	cursor: pointer;
 }
 .bassicon,.guitaricon,.drumicon,.managericon {
@@ -42,14 +42,14 @@ img {
 	max-height:450px;
 	height:450px;
 }
-.drumupgrades,.guitarupgrades,.bassupgrades {
+.drumupgrades,.guitarupgrades {
 	background-color: rgba(255,255,255,.75);
 	width: 1400px;
 	padding: 20px;
 	display:inline-block;
 	float: right;
 }
-.snare,.hihat,.cymbals,.drumsticks,.tomtoms,.buygutiar,.buybass {
+.snare,.hihat,.cymbals,.drumsticks,.tomtoms,.buyguitar,.buybass,.buypick {
 	float: left;
 	width: 350px;
 	height: 150px;

@@ -7,12 +7,13 @@ Currently being worked on.
 
 To do:
 <ul>
-	<li>Change place holder images from http://piq.codeus.net/picture/41877/untitled to proper images</li>
+	<li>Change place holder images</li>
 	<li>Give page a proper layout/style</li>
 	<li>Add more features</li>
 	<li>Add saving game and stats menu</li>
 	<li>Tweak numbers</li>
-	<li>Add more instruments</li>
 	<li>Have proper sizes to deal with other resolutions</li>
 	<li>sound?</li>
+	<li>more venues</li>
+	<li>Limit upgrades dependent on current fans</li>
 </ul>
