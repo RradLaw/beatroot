@@ -10,9 +10,9 @@ var drum = {
 	hihat: {
 		total: 0,
 		basecost: 100,
-		cost: 100,
-		multiplier: 1,
-		nextmultiplier: 2,
+		cost: 150,
+		multiplier: 0,
+		nextmultiplier: 1,
 		fansneeded: 0,
 	},
 	cymbals: {
@@ -27,8 +27,8 @@ var drum = {
 		total: 0,
 		basecost:2500,
 		cost: 2500,
-		multiplier: 0,
-		nextmultiplier: 1,
+		multiplier: 1,
+		nextmultiplier: 2,
 		fansneeded: 350,
 	},
 	sticks: {
@@ -55,7 +55,7 @@ var pick = {
 	fansneeded: 500000
 };
 var bass = {
-	fansneeded: 1000,
+	fansneeded: 1250,
 	basecost: 100000,
 	cost: 100000,
 	total: 0,
@@ -70,7 +70,7 @@ var clicks = 0;
 var dollars = 0;
 var beat=0;
 var beatsperfan=16;
-
+var hidden=0;
 var venuecost=50000;
 var venue = "basement";
 //basement, shed, pub, concert,tour
@@ -275,9 +275,9 @@ function beginTick() {
 function geartext() {
 	var str1='',str2='',str3='',str4='',str5='',str6='',str7='',str8='';
 	if(drum.snare.total) str1='<h3>Snare:</h3>'+drum.snare.multiplier+' Autobeats per second';
-	if(drum.hihat.total) str2='<h3>Hihat</h3>'+drum.hihat.multiplier+' fans per beat cycle';
+	if(drum.hihat.total) str2='<h3>Hihat</h3>'+drum.hihat.multiplier+' new fans per second';
 	if(drum.cymbals.total) str3='<h3>Cymbals</h3>$'+drum.cymbals.multiplier+' per fan';
-	if(drum.tomtoms.total) str4='<h3>Tomtoms</h3>'+drum.tomtoms.multiplier+' new fans per second';
+	if(drum.tomtoms.total) str4='<h3>Tomtoms</h3>'+drum.tomtoms.multiplier+' fans per beat cycle';
 	if(drum.sticks.total) str5='<h3>Drumsticks</h3>'+drum.sticks.multiplier+' beats per click';
 
 	if(guitar.total) str6='<hr><h3>Guitar</h3>Each autobeat hits '+guitar.multiplier+'times per second';
@@ -289,7 +289,7 @@ function geartext() {
 
 function beats() {
 	if(beat>=Math.floor(beatsperfan*pick.multiplier)){
-		fans+=drum.hihat.multiplier;
+		fans+=drum.tomtoms.multiplier;
 		beat-=Math.floor(beatsperfan*pick.multiplier);
 		beats();
 	}
@@ -303,7 +303,7 @@ function updateValues(){
 	l('bpf').innerHTML= beutify(Math.floor(beatsperfan*pick.multiplier));//make sure it cannot go below 1
 	l('bpf2').innerHTML= beutify(beatsperfan);
 	l('dpf').innerHTML = beutify(drum.cymbals.multiplier);
-	l('fpbc').innerHTML = beutify(drum.hihat.multiplier);
+	l('fpbc').innerHTML = beutify(drum.tomtoms.multiplier);
 	if(drum.snare.multiplier!=1) document.getElementById('s').innerHTML = 's';
 	l('hihatmulti').innerHTML = beutify(drum.hihat.nextmultiplier);
 	l('hihatcost').innerHTML = beutify(drum.hihat.cost);
@@ -321,7 +321,9 @@ function updateValues(){
 	l('drumstickscost').innerHTML = beutify(drum.sticks.cost);
 	l('guitarmulti').innerHTML = beutify(guitar.nextmultiplier);
 	l('pickcost').innerHTML = beutify(pick.cost);
-	l('venuecost').innerHTML = beutify(venuecost);
+	l('venuecosts').innerHTML = beutify(venuecost);
+	l('venuecostp').innerHTML = beutify(venuecost);
+	l('venuecostc').innerHTML = beutify(venuecost);
 	l('bpc').innerHTML = beutify(drum.sticks.multiplier);
 	l('mffv').innerHTML = beutify(fansmax);
 	if(guitar.total>0) document.getElementById('guitartext').innerHtml = 'Upgrade';
@@ -338,6 +340,7 @@ function show(){
 }
 
 function nextVenue(){
+	dollars-=venuecost;
 	switch (venue) {
 		case "basement":
 			venue="shed";
@@ -427,6 +430,8 @@ function revealhidden(){
 	$('.buypub').removeClass('hidden');
 	$('.buyconcert').removeClass('hidden');
 	$('.buytour').removeClass('hidden');
+	$('.cymbals').removeClass('hidden');
+	$('.tomtoms').removeClass('hidden');
 }
 
 function l(a) {return document.getElementById(a);}
@@ -438,12 +443,12 @@ function beutify(x){
 function tick() {
     dollars+=Math.round(Math.random()*fans*drum.cymbals.multiplier);
     beat+=drum.snare.multiplier*guitar.multiplier;
-   	fans+=drum.tomtoms.multiplier;
+   	fans+=drum.hihat.multiplier;
     beats();
 	updateValues();
 	show();
 	fansMaximum();
-	//revealhidden();
+	if(hidden!=0) revealhidden();
 }
 
 //var dollars=1000000000000;

@@ -12,8 +12,10 @@ To do:
 	<li>Add more features</li>
 	<li>Add saving game and reset</li>
 	<li>Tweak numbers</li>
-	<li>Have proper sizes to deal with other resolutions</li>
 	<li>Hidden Divs fade in?</li>
-	<li>Swap hihat with tomtoms</li>
-	<li>Fix pub cost</li>
+	<li>Better scaling</li>
+	<li>More frequent drumsticks</li>
+	<li>Make cd's:x dollars per fan. On a cooldown</li>
+	<li>Gather stats per gear</li>
+	<li>Make brick background better</li>
 </ul>

@@ -3,7 +3,7 @@
 <head>
 	<title>Beatroot</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<!--link rel="shortcut icon" href="favicon.ico"-->
+	<link rel="shortcut icon" href="img/favicon.ico">
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -91,7 +91,7 @@
 			<br>
 			Cost: $<span id="hihatcost">0</span>
 			<br>
-			Effect: Increases fans per <span id="bpf2">0</span> beats to <span id="hihatmulti">0</span>.
+			Effect: <span id="hihatmulti">0</span> new fans every second.
 		</div>
 
 		<div class="cymbals hidden">
@@ -109,7 +109,7 @@
 			<br>
 			Cost: $<span id="tomtomscost">0</span>
 			<br>
-			Effect: <span id="tomtomsmulti">0</span> new fans every second.
+			Effect: Increases fans per <span id="bpf2">0</span> beats to <span id="tomtomsmulti">0</span>.
 		</div>
 
 		<div class="drumsticks hidden">
@@ -124,7 +124,6 @@
 
 	</div>
 	<div class="guitarupgrades">
-		<hr>
 		<div class="buyguitar hidden">
 			<img src="img/guitar.png" id="buyguitar" draggable="false" height="100px" align="left">
 			<!--temporary guitar from http://makepixelart.com/artists/sebastian/guitar_2-->
@@ -156,7 +155,7 @@
 			<img src="img/bg2.png" id="buyshed" draggable="false" height="100px" width="100px" align="left">
 			<b>Hire a shed venue.</b>
 			<br>
-			Cost: $<span id="venuecost">0</span>
+			Cost: $<span id="venuecosts">0</span>
 			<br>
 			Effect: Reduces beats per cycle by 1.
 		</div>
@@ -165,7 +164,7 @@
 			<img src="img/bg3.png" id="buypub" draggable="false" height="100px" width="100px" align="left">
 			<b>Hire a pub venue.</b>
 			<br>
-			Cost: $<span id="venuecost">0</span>
+			Cost: $<span id="venuecostp">0</span>
 			<br>
 			Effect: Reduces beats per cycle by 1.
 		</div>
@@ -174,7 +173,7 @@
 			<img src="img/bg4.png" id="buysconcert" draggable="false" height="100px" width="100px" align="left">
 			<b>Have a concert.</b>
 			<br>
-			Cost: $<span id="venuecost">0</span>
+			Cost: $<span id="venuecostc">0</span>
 			<br>
 			Effect: Reduces beats per cycle by 1.
 		</div>

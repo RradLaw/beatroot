@@ -5,6 +5,7 @@
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	font-family: Tahoma, Geneva, sans-serif;
 }
 img {
 	padding: 5px;
@@ -50,7 +51,7 @@ img {
 
 .info,.stats,.gear,.help {
 	background-color: rgba(255,255,255,.75);
-	height: 550px;
+	height: 570px;
 	padding: 20px;
 	display:inline-block;
 	position: static;
