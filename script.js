@@ -21,7 +21,7 @@ var drum = {
 		cost: 1000,
 		multiplier: 1,
 		nextmultiplier: 2,
-		fansneeded: 0,
+		fansneeded: 30,
 	},
 	tomtoms: {
 		total: 0,
@@ -29,7 +29,7 @@ var drum = {
 		cost: 2500,
 		multiplier: 0,
 		nextmultiplier: 1,
-		fansneeded: 0,
+		fansneeded: 300,
 	},
 	sticks: {
 		total: 0,
@@ -37,14 +37,14 @@ var drum = {
 		cost: 150,
 		multiplier: 1,
 		nextmultiplier: 2,
-		fansneeded: 10,
+		fansneeded: 15,
 	},
 };
 var guitar = {
 	fansneeded: 500,
 	total: 0,
 	basecost:5000,
-	cost: 5000,
+	cost: 10000,
 	multiplier: 1,
 	nextmultiplier: 2
 };
@@ -64,14 +64,17 @@ var bass = {
 };
 
 var fans = 0;
+var fansmax=500;
+var fansMaxMessage=0;
 var clicks = 0;
 var dollars = 0;
 var beat=0;
 var beatsperfan=16;
 var hidden=0;
 
+var venuecost=5000;
 var venue = "basement";
-//basement, shed, pub, gig, concert
+//basement, shed, pub, concert,tour
 
 $(document).ready(function () {
 beginTick();
@@ -143,7 +146,7 @@ $('#buydrumsticks').click(function() {
 		drum.sticks.cost*=2*drum.sticks.multiplier;
 		drum.sticks.multiplier=drum.sticks.nextmultiplier;
 		drum.sticks.nextmultiplier*=2;
-		drum.sticks.fansneeded*=100;
+		drum.sticks.fansneeded*=10;
 		$('.drumsticks').addClass('hidden');
 		updateValues();
 	} else{
@@ -154,6 +157,7 @@ $('#buydrumsticks').click(function() {
 $('#buyguitar').click(function() {
 	if(dollars>=guitar.cost){
 		dollars-=guitar.cost;
+		if(!guitar.total)l('guitaricon').innerHTML="<img id=\"drum\" src=\"img/guitar.png\" height=\"100px\" draggable=\"false\">";
 		guitar.total++;
 		guitar.multiplier++;
 		updateValues();
@@ -166,6 +170,7 @@ $('#buybass').click(function() {
 	if(dollars>=bass.cost){
 		dollars-=bass.cost;
 		bass.total++;
+		if(!bass.total)l('bassicon').innerHTML="<img id=\"drum\" src=\"img/bass.png\" height=\"100px\" draggable=\"false\">";
 		updateValues();
 		beatsperfan-=bass.multiplier;
 		$('.buybass').addClass('hidden');
@@ -184,6 +189,55 @@ $('#buypick').click(function() {
 	} else{
 		$("#information").prepend($('<p>You can\'t afford that.</p>').fadeIn('slow'));
 	}	
+});
+
+
+$('#buypick').click(function() {
+	if(dollars>=pick.cost){
+		dollars-=pick.cost;
+		pick.pickofdestiny++;
+		pick.multiplier*=0.5;
+		$('.buypick').addClass('hidden');
+		updateValues();
+	} else{
+		$("#information").prepend($('<p>You can\'t afford that.</p>').fadeIn('slow'));
+	}	
+});
+
+$('#buyshed').click(function() {
+	if(dollars>=venuecost){
+		nextVenue();
+		beatsperfan--;
+	} else{
+		$("#information").prepend($('<p>You can\'t afford that.</p>').fadeIn('slow'));
+	}
+});
+
+$('#buypub').click(function() {
+	if(dollars>=venuecost){
+		nextVenue();
+		beatsperfan--;
+	} else{
+		$("#information").prepend($('<p>You can\'t afford that.</p>').fadeIn('slow'));
+	}
+});
+
+$('#buysconcert').click(function() {
+	if(dollars>=venuecost){
+		nextVenue();
+		beatsperfan--;
+	} else{
+		$("#information").prepend($('<p>You can\'t afford that.</p>').fadeIn('slow'));
+	}
+});
+
+$('#buytour').click(function() {
+	if(dollars>=venuecost){
+		nextVenue();
+		beatsperfan--;
+	} else{
+		$("#information").prepend($('<p>You can\'t afford that.</p>').fadeIn('slow'));
+	}
 });
 
 $('#statstab').click(function(){
@@ -266,6 +320,7 @@ function updateValues(){
 	l('drumstickscost').innerHTML = beutify(drum.sticks.cost);
 	l('guitarmulti').innerHTML = beutify(guitar.nextmultiplier);
 	l('pickcost').innerHTML = beutify(pick.cost);
+	l('venuecost').innerHTML = beutify(venuecost);
 	if(guitar.total>0) document.getElementById('guitartext').innerHtml = 'Upgrade';
 	geartext();
 }
@@ -275,13 +330,97 @@ function show(){
 	if(fans>=bass.fansneeded) $('.buybass').removeClass('hidden');
 	if(fans>=pick.fansneeded) $('.buypick').removeClass('hidden');
 	if(fans>=drum.sticks.fansneeded) $('.drumsticks').removeClass('hidden');
+	if(fans>=drum.cymbals.fansneeded) $('.cymbals').removeClass('hidden');
+	if(fans>=drum.tomtoms.fansneeded) $('.tomtoms').removeClass('hidden');
 }
 
-function hidden(){
+function nextVenue(){
+	switch (venue) {
+		case "basement":
+			venue="shed";
+			document.body.style.backgroundImage="url('img/bg2.png')";
+			fansneeded=5000;
+			fansmax=5000;
+			$('.buyshed').addClass('hidden');
+			break;
+		case "shed":
+			venue="pub";
+			document.body.style.backgroundImage="url('img/bg3.png')";
+			fansneeded=50000;
+			fansmax=50000;
+			$('.buypub').addClass('hidden');
+			break;
+		case "pub":
+			venue="concert";
+			document.body.style.backgroundImage="url('img/bg4.png')";
+			fansneeded=500000;
+			fansmax=500000;
+			$('.buypub').addClass('hidden');
+			break;
+		case "concert":
+			//venue="tour";
+			//document.body.style.backgroundImage="url('img/bg1.png')";
+			//fansneeded=5000;
+			fansmax=9007199254740992;
+			$('.buyconcert').addClass('hidden');
+			break;
+		case "tour":
+			//venue="basement";
+			//document.body.style.backgroundImage="url('img/bg.png')";
+			//fansneeded=5000;
+			//fansmax=5000;
+			//$('.buyshed').addClass('hidden');
+			break;
+		}
+	}
+
+function fansMaximum(){
+	switch (venue) {
+		case "basement":
+			if (fans>(0.75*fansmax)){
+				$('.buyshed').removeClass('hidden');
+			}
+			break;
+		case "shed":
+			if (fans>(0.75*fansmax)){
+				$('.buypub').removeClass('hidden');
+			}
+			break;
+		case "pub":
+			if (fans>(0.75*fansmax)){
+				$('.buyconcert').removeClass('hidden');
+			}
+			break;
+		case "concert":
+			//if (fans>(0.75*fansmax)){
+			//	$('.buytour').removeClass('hidden');
+			//}
+			break;
+		case "tour":
+			//if (fans>(0.75*fansmax)){
+			//	$('.pubupgrade').removeClass('hidden');
+			//}
+			break;
+		}
+
+	if (fans>fansmax) {
+		fans=fansmax;
+		if(!fansMaxMessage) {
+		$("#information").prepend($('<p>You\'ve reached maximum fans for the venue.</p>').fadeIn('slow'));
+		fansMaxMessage=1;
+		}
+}
+}
+
+function revealhidden(){
 	$('.buyguitar').removeClass('hidden');
 	$('.buybass').removeClass('hidden');
 	$('.buypick').removeClass('hidden');
 	$('.drumsticks').removeClass('hidden');
+	$('.buyshed').removeClass('hidden');
+	$('.buypub').removeClass('hidden');
+	$('.buyconcert').removeClass('hidden');
+	$('.buytour').removeClass('hidden');
 }
 
 function l(a) {return document.getElementById(a);}
@@ -297,10 +436,11 @@ function tick() {
     beats();
 	updateValues();
 	show();
-	if(!hidden) hidden();
+	fansMaximum();
+	//if(!hidden) revealhidden();
 }
 
-//var hidden=1;
+//var hidden=0;
 //var dollars=1000000000000;
 
 

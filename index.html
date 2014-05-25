@@ -13,12 +13,12 @@
 	<script type="text/javascript" src="script.js"></script>
 </head>
 
-<body background="img/bg.png">
+<body background="img/bg3.png" height="100px">
 <div class="header">
-	<!--div class="bassicon"></div-->
+	<div class="bassicon"><span id="bassicon"></span></div>
 	<div class="drumicon"><img id="drum" src="img/drum.png" draggable="false"></div>
 	<!--borrowed from http://piq.codeus.net/static/media/userpics/piq_41877_400x400.png-->
-	<!--div class="guitaricon"></div-->
+	<div class="guitaricon"><span id="guitaricon"></span></div>
 </div>
 <hr>
 <div class="resources">
@@ -86,7 +86,7 @@
 			Effect: Increases fans per <span id="bpf2">0</span> beats to <span id="hihatmulti">0</span>.
 		</div>
 
-		<div class="cymbals">
+		<div class="cymbals hidden">
 			<img src="img/cymbals.png" id="upgradecymbals" draggable="false" height="100px" align="left">
 			<b>Upgrade Cymbals</b>
 			<br>
@@ -95,7 +95,7 @@
 			Effect: Increases $ per fan to $<span id="cymbalsmulti">0</span>.
 		</div>
 
-		<div class="tomtoms">
+		<div class="tomtoms hidden">
 			<img src="img/tomtoms.png" id="upgradetomtoms" draggable="false" height="100px" align="left">
 			<b>Upgrade Tomtoms</b>
 			<br>
@@ -143,6 +143,43 @@
 			<br>
 			Effect: Reduces beats per cycle by 1.
 		</div>
+
+		<div class="buyshed hidden">
+			<img src="img/bg2.png" id="buyshed" draggable="false" height="100px" align="left">
+			<b>Hire a shed venue.</b>
+			<br>
+			Cost: $<span id="venuecost">0</span>
+			<br>
+			Effect: Reduces beats per cycle by 1.
+		</div>
+
+		<div class="buypub hidden">
+			<img src="img/bg3.png" id="buypub" draggable="false" height="100px" align="left">
+			<b>Hire a pub venue.</b>
+			<br>
+			Cost: $<span id="venuecost">0</span>
+			<br>
+			Effect: Reduces beats per cycle by 1.
+		</div>
+
+		<div class="buyconcert hidden">
+			<img src="img/bg4.png" id="buysconcert" draggable="false" height="100px" align="left">
+			<b>Have a concert.</b>
+			<br>
+			Cost: $<span id="venuecost">0</span>
+			<br>
+			Effect: Reduces beats per cycle by 1.
+		</div>
+
+		<!--div class="buytour hidden">
+			<img src="img/bg5.png" id="buytour" draggable="false" height="100px" align="left">
+			<b>Go on tour!</b>
+			<br>
+			Cost: $<span id="venuecost">0</span>
+			<br>
+			Effect: Reduces beats per cycle by 1.
+		</div-->
+
 	</div>
 </div>
 

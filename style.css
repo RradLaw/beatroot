@@ -1,11 +1,11 @@
-/** {
+{
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-}*/
+}
 img {
 	padding: 5px;
 }
@@ -20,7 +20,9 @@ img {
 	background-size: contain;
 	font-size: 30px;
 }
-.drumicon,#upgradetomtoms,#upgradesnare,#upgradehihat,#upgradecymbals,#buybass,#buyguitar,#buydrumsticks,#buypick{
+.drumicon,#upgradetomtoms,#upgradesnare,#upgradehihat,#upgradecymbals,#buydrumsticks,
+#buybass,#buyguitar,#buypick
+#buyshed,#buypub,#buyconcert,#buytour{
 	cursor: pointer;
 }
 .bassicon,.guitaricon,.drumicon,.managericon {
@@ -61,7 +63,9 @@ img {
 	display:inline-block;
 	float: right;
 }
-.snare,.hihat,.cymbals,.drumsticks,.tomtoms,.buyguitar,.buybass,.buypick {
+.snare,.hihat,.cymbals,.drumsticks,.tomtoms,
+.buyguitar,.buybass,.buypick, 
+.buyshed,.buypub,.buyconcert,.buytour {
 	float: left;
 	width: 350px;
 	height: 150px;
