@@ -14,7 +14,7 @@ To do:
 	<li>Tweak numbers</li>
 	<li>Have proper sizes to deal with other resolutions</li>
 	<li>Add amp: Much more money per fan; less fans per second.</li>
-	<li>Pick of destiny unlock at pub</li>
-	<li>New fans generate money, old fans generate a little bit of money each second</li>
 	<li>Hidden Divs fade in?</li>
+	<li>Swap hihat with tomtoms</li>
+	<li>Add click multiplier, Max fans, to stats menu</li>
 </ul>

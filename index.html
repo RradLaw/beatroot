@@ -53,10 +53,15 @@
 			$<span id="dpf">0</span> per fan every second 
 			<br>
 			<span id="bpa">0</span> autobeats per second
+			<br>
+			<span id="bpc">0</span> beats per click
+			<br>
+			<span id="mffv">0</span> maximum fans for this venue
 		<p></p>
-		<button type="button" id="save" onmousedown='return false;'>Save</button>
+		<!--button type="button" id="save" onmousedown='return false;'>Save</button>
 		<button type="button" id="load" onmousedown='return false;'>Load</button>
-		<button type="button" id="reset" onmousedown='return false;'>Reset</button></div>
+		<button type="button" id="reset" onmousedown='return false;'>Reset</button-->
+		</div>
 	</div>
 
 	<div class="gear hidden">
@@ -130,7 +135,7 @@
 			Effect: Increases autobeats to <span id="guitarmulti">0</span> beats every second.
 		</div>
 		<div class="buypick hidden">
-			<img src="img/pick.gif" id="buypick" draggable="false" height="100px" align="left">
+			<img src="img/pick.gif" id="buypick" draggable="false" height="100px"  align="left">
 			<!--temporary guitar from http://makepixelart.com/artists/sebastian/guitar_2-->
 			<b>Buy Pick of Destiny</b>
 			<br>
@@ -139,7 +144,7 @@
 			Effect: Halves the beats per cycle.
 		</div>
 		<div class="buybass hidden">
-			<img src="img/bass.png" id="buybass" draggable="false" height="100px" align="left">
+			<img src="img/bass.png" id="buybass" draggable="false" height="100px" width="100px" align="left">
 			<b><span id="basstext">Buy</span> Bass</b>
 			<br>
 			Cost: $<span id="basscost">0</span>
@@ -148,7 +153,7 @@
 		</div>
 
 		<div class="buyshed hidden">
-			<img src="img/bg2.png" id="buyshed" draggable="false" height="100px" align="left">
+			<img src="img/bg2.png" id="buyshed" draggable="false" height="100px" width="100px" align="left">
 			<b>Hire a shed venue.</b>
 			<br>
 			Cost: $<span id="venuecost">0</span>
@@ -157,7 +162,7 @@
 		</div>
 
 		<div class="buypub hidden">
-			<img src="img/bg3.png" id="buypub" draggable="false" height="100px" align="left">
+			<img src="img/bg3.png" id="buypub" draggable="false" height="100px" width="100px" align="left">
 			<b>Hire a pub venue.</b>
 			<br>
 			Cost: $<span id="venuecost">0</span>
@@ -166,7 +171,7 @@
 		</div>
 
 		<div class="buyconcert hidden">
-			<img src="img/bg4.png" id="buysconcert" draggable="false" height="100px" align="left">
+			<img src="img/bg4.png" id="buysconcert" draggable="false" height="100px" width="100px" align="left">
 			<b>Have a concert.</b>
 			<br>
 			Cost: $<span id="venuecost">0</span>

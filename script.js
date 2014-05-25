@@ -21,7 +21,7 @@ var drum = {
 		cost: 1000,
 		multiplier: 1,
 		nextmultiplier: 2,
-		fansneeded: 30,
+		fansneeded: 50,
 	},
 	tomtoms: {
 		total: 0,
@@ -29,12 +29,12 @@ var drum = {
 		cost: 2500,
 		multiplier: 0,
 		nextmultiplier: 1,
-		fansneeded: 300,
+		fansneeded: 350,
 	},
 	sticks: {
 		total: 0,
-		basecost:150,
-		cost: 150,
+		basecost:100,
+		cost: 100,
 		multiplier: 1,
 		nextmultiplier: 2,
 		fansneeded: 15,
@@ -52,7 +52,7 @@ var pick = {
 	pickofdestiny: 0,
 	cost: 1000000,
 	multiplier: 1,
-	fansneeded: 2000
+	fansneeded: 500000
 };
 var bass = {
 	fansneeded: 1000,
@@ -71,7 +71,7 @@ var dollars = 0;
 var beat=0;
 var beatsperfan=16;
 
-var venuecost=5000;
+var venuecost=50000;
 var venue = "basement";
 //basement, shed, pub, concert,tour
 
@@ -129,7 +129,7 @@ $('#upgradetomtoms').click(function() {
 	if(dollars>=drum.tomtoms.cost){
 		dollars-=drum.tomtoms.cost;
 		drum.tomtoms.total++;
-		drum.tomtoms.cost=drum.tomtoms.cost*1.5^drum.tomtoms.total;
+		drum.tomtoms.cost=drum.tomtoms.cost*1.3^drum.tomtoms.total;
 		drum.tomtoms.multiplier=drum.tomtoms.nextmultiplier;
 		drum.tomtoms.nextmultiplier++;
 		updateValues();
@@ -158,7 +158,9 @@ $('#buyguitar').click(function() {
 		dollars-=guitar.cost;
 		if(!guitar.total)l('guitaricon').innerHTML="<img id=\"drum\" src=\"img/guitar.png\" height=\"100px\" draggable=\"false\">";
 		guitar.total++;
+		guitar.cost=guitar.cost*1.5^guitar.total;
 		guitar.multiplier++;
+		guitar.nextmultiplier++;
 		updateValues();
 	} else{
 		$("#information").prepend($('<p>You can\'t afford that.</p>').fadeIn('slow'));
@@ -169,7 +171,7 @@ $('#buybass').click(function() {
 	if(dollars>=bass.cost){
 		dollars-=bass.cost;
 		bass.total++;
-		if(!bass.total)l('bassicon').innerHTML="<img id=\"drum\" src=\"img/bass.png\" height=\"100px\" draggable=\"false\">";
+		l('bassicon').innerHTML="<img id=\"drum\" src=\"img/bass.png\" height=\"100px\" draggable=\"false\">";
 		updateValues();
 		beatsperfan-=bass.multiplier;
 		$('.buybass').addClass('hidden');
@@ -177,19 +179,6 @@ $('#buybass').click(function() {
 		$("#information").prepend($('<p>You can\'t afford that.</p>').fadeIn('slow'));
 	}	
 });
-
-$('#buypick').click(function() {
-	if(dollars>=pick.cost){
-		dollars-=pick.cost;
-		pick.pickofdestiny++;
-		pick.multiplier*=0.5;
-		$('.buypick').addClass('hidden');
-		updateValues();
-	} else{
-		$("#information").prepend($('<p>You can\'t afford that.</p>').fadeIn('slow'));
-	}	
-});
-
 
 $('#buypick').click(function() {
 	if(dollars>=pick.cost){
@@ -269,11 +258,9 @@ $('#helptab').click(function(){
 
 
 $('#save').click(function(){
-	docCookies.setItem("dollars",dollars);
 });
 
 $('#load').click(function(){
-	dollars=docCookies.getItem("dollars");
 	updateValues();
 });
 
@@ -309,6 +296,7 @@ function beats() {
 }
 
 function updateValues(){
+	fansMaximum();
 	l('beat').innerHTML= beutify(beat);
 	l('fans').innerHTML= beutify(fans);
 	l('dollars').innerHTML= beutify(dollars);
@@ -334,14 +322,16 @@ function updateValues(){
 	l('guitarmulti').innerHTML = beutify(guitar.nextmultiplier);
 	l('pickcost').innerHTML = beutify(pick.cost);
 	l('venuecost').innerHTML = beutify(venuecost);
+	l('bpc').innerHTML = beutify(drum.sticks.multiplier);
+	l('mffv').innerHTML = beutify(fansmax);
 	if(guitar.total>0) document.getElementById('guitartext').innerHtml = 'Upgrade';
 	geartext();
 }
 
 function show(){
 	if(fans>=guitar.fansneeded) $('.buyguitar').removeClass('hidden');
-	if(fans>=bass.fansneeded) $('.buybass').removeClass('hidden');
-	if(fans>=pick.fansneeded) $('.buypick').removeClass('hidden');
+	if(fans>=bass.fansneeded&&bass.total==0) $('.buybass').removeClass('hidden');
+	if(fans>=pick.fansneeded&&pick.total==0) $('.buypick').removeClass('hidden');
 	if(fans>=drum.sticks.fansneeded) $('.drumsticks').removeClass('hidden');
 	if(fans>=drum.cymbals.fansneeded) $('.cymbals').removeClass('hidden');
 	if(fans>=drum.tomtoms.fansneeded) $('.tomtoms').removeClass('hidden');
@@ -354,6 +344,7 @@ function nextVenue(){
 			document.body.style.backgroundImage="url('img/bg2.png')";
 			fansneeded=5000;
 			fansmax=5000;
+			venuecost=500000;
 			$('.buyshed').addClass('hidden');
 			break;
 		case "shed":
@@ -361,12 +352,14 @@ function nextVenue(){
 			document.body.style.backgroundImage="url('img/bg3.png')";
 			fansneeded=50000;
 			fansmax=50000;
+			venuecost=10000000;
 			$('.buypub').addClass('hidden');
 			break;
 		case "pub":
 			venue="concert";
 			document.body.style.backgroundImage="url('img/bg4.png')";
 			fansneeded=500000;
+			venuecost=10000000;
 			fansmax=500000;
 			$('.buypub').addClass('hidden');
 			break;
@@ -439,7 +432,7 @@ function revealhidden(){
 function l(a) {return document.getElementById(a);}
 
 function beutify(x){
-	return x;//.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 function tick() {
@@ -454,65 +447,5 @@ function tick() {
 }
 
 //var dollars=1000000000000;
-
-
-/*\
-|*|
-|*|  :: cookies.js ::
-|*|
-|*|  A complete cookies reader/writer framework with full unicode support.
-|*|
-|*|  https://developer.mozilla.org/en-US/docs/DOM/document.cookie
-|*|
-|*|  This framework is released under the GNU Public License, version 3 or later.
-|*|  http://www.gnu.org/licenses/gpl-3.0-standalone.html
-|*|
-|*|  Syntaxes:
-|*|
-|*|  * docCookies.setItem(name, value[, end[, path[, domain[, secure]]]])
-|*|  * docCookies.getItem(name)
-|*|  * docCookies.removeItem(name[, path], domain)
-|*|  * docCookies.hasItem(name)
-|*|  * docCookies.keys()
-|*|
-\*/
-
-var docCookies = {
-  getItem: function (sKey) {
-    return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
-  },
-  setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
-    if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { return false; }
-    var sExpires = "";
-    if (vEnd) {
-      switch (vEnd.constructor) {
-        case Number:
-          sExpires = vEnd === Infinity ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT" : "; max-age=" + vEnd;
-          break;
-        case String:
-          sExpires = "; expires=" + vEnd;
-          break;
-        case Date:
-          sExpires = "; expires=" + vEnd.toUTCString();
-          break;
-      }
-    }
-    document.cookie = encodeURIComponent(sKey) + "=" + encodeURIComponent(sValue) + sExpires + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "") + (bSecure ? "; secure" : "");
-    return true;
-  },
-  removeItem: function (sKey, sPath, sDomain) {
-    if (!sKey || !this.hasItem(sKey)) { return false; }
-    document.cookie = encodeURIComponent(sKey) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + ( sDomain ? "; domain=" + sDomain : "") + ( sPath ? "; path=" + sPath : "");
-    return true;
-  },
-  hasItem: function (sKey) {
-    return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
-  },
-  keys: /* optional method: you can safely remove it! */ function () {
-    var aKeys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "").split(/\s*(?:\=[^;]*)?;\s*/);
-    for (var nIdx = 0; nIdx < aKeys.length; nIdx++) { aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]); }
-    return aKeys;
-  }
-};
 
 });
