@@ -13,8 +13,7 @@ To do:
 	<li>Add saving game and reset</li>
 	<li>Tweak numbers</li>
 	<li>Have proper sizes to deal with other resolutions</li>
-	<li>Add amp: Much more money per fan; less fans per second.</li>
 	<li>Hidden Divs fade in?</li>
 	<li>Swap hihat with tomtoms</li>
-	<li>Add click multiplier, Max fans, to stats menu</li>
+	<li>Fix pub cost</li>
 </ul>
