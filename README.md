@@ -1,4 +1,4 @@
-JAM++ Game 2014
+Beatroot
 ===============
 
 My project for JAM++: http://www.reddit.com/r/incremental_games/comments/25vr9f/jam/
@@ -18,4 +18,8 @@ To do:
 	<li>Make cd's:x dollars per fan. On a cooldown</li>
 	<li>Gather stats per gear</li>
 	<li>Make brick background better</li>
+	<li>Sound?</li>
+	<li>nerf cymbals</li>
+	<li>When max fans, each new fan gives a dollar?</li>
+	<li>Merge Stats and Gear</li>
 </ul>

@@ -28,7 +28,6 @@
 	<br>
 		<button type="button" id="statstab" onmousedown='return false;'>Stats</button>
 		<button type="button" id="infotab" onmousedown='return false;'>Info</button>
-		<button type="button" id="geartab" onmousedown='return false;'>Gear</button>
 		<button type="button" id="helptab" onmousedown='return false;'>Help</button>
 	<br>
 
@@ -44,29 +43,17 @@
 	<div class="stats hidden">
 		<h2>Stats:</h2>
 		<div id="statistics">
+			<span id="clicks">0</span> clicks
+			<br>
 			<span id="bpf">0</span> beats per cycle
 			<br>
-			<span id="fpbc">0</span> fan<span id="s"></span> per beat cycle 
-			<br>
-			<span id="fps">0</span> fans per second 
-			<br>
-			$<span id="dpf">0</span> per fan every second 
-			<br>
 			<span id="bpa">0</span> autobeats per second
-			<br>
-			<span id="bpc">0</span> beats per click
-			<br>
-			<span id="mffv">0</span> maximum fans for this venue
-		<p></p>
+
+		<span id="geartexts">a</span>
 		<!--button type="button" id="save" onmousedown='return false;'>Save</button>
 		<button type="button" id="load" onmousedown='return false;'>Load</button>
 		<button type="button" id="reset" onmousedown='return false;'>Reset</button-->
 		</div>
-	</div>
-
-	<div class="gear hidden">
-		<h2>Current Gear:</h2>
-		<div id="currentgear"><span id="geartexts">a</span></div>
 	</div>
 
 	<div class="help hidden">

@@ -32,7 +32,7 @@ img {
 	display: inline;
 }
 @media screen and (min-width: 1024px) {
-	.info,.stats,.gear,.help {
+	.info,.stats,.help {
 		width: 300px;
 	}
 	.drumupgrades,.guitarupgrades {
@@ -41,7 +41,7 @@ img {
 }
 
 @media screen and (min-width: 1600px) {
-	.info,.stats,.gear,.help {
+	.info,.stats,.help {
 		width: 400px;
 	}
 	.drumupgrades,.guitarupgrades {
@@ -49,7 +49,7 @@ img {
 	}
 }
 
-.info,.stats,.gear,.help {
+.info,.stats,.help {
 	background-color: rgba(255,255,255,.75);
 	height: 570px;
 	padding: 20px;
@@ -58,7 +58,7 @@ img {
 	float: left;
 	overflow: hidden;
 }
-.gear{
+.stats{
 	overflow:scroll;
 }
 .buttontabs {
@@ -69,7 +69,7 @@ img {
 	position: static;
 	display:inline-block;
 }
-.information,.statistics,.currentgear,.helpp {
+.information,.statistics,.helpp {
 	display:inline-block;
 	max-height:450px;
 	height:450px;

@@ -5,7 +5,8 @@ var drum = {
 		basecost: 20,
 		cost: 20,
 		multiplier: 0,
-		nextmultiplier: 1
+		nextmultiplier: 1,
+		gathered: 0,
 	},
 	hihat: {
 		total: 0,
@@ -14,14 +15,16 @@ var drum = {
 		multiplier: 0,
 		nextmultiplier: 1,
 		fansneeded: 0,
+		gathered: 0,
 	},
 	cymbals: {
 		total: 0,
-		basecost: 1000,
-		cost: 1000,
+		basecost: 5000,
+		cost: 5000,
 		multiplier: 1,
 		nextmultiplier: 2,
-		fansneeded: 50,
+		fansneeded: 100,
+		gathered: 0,
 	},
 	tomtoms: {
 		total: 0,
@@ -30,6 +33,7 @@ var drum = {
 		multiplier: 1,
 		nextmultiplier: 2,
 		fansneeded: 350,
+		gathered: 0,
 	},
 	sticks: {
 		total: 0,
@@ -37,7 +41,7 @@ var drum = {
 		cost: 100,
 		multiplier: 1,
 		nextmultiplier: 2,
-		fansneeded: 15,
+		fansneeded: 50,
 	},
 };
 var guitar = {
@@ -63,6 +67,8 @@ var bass = {
 	nextmultiplier: 1,
 };
 
+var totaldollars = 0;
+var totalbeats = 0;
 var fans = 0;
 var fansmax=500;
 var fansMaxMessage=0;
@@ -71,7 +77,7 @@ var dollars = 0;
 var beat=0;
 var beatsperfan=16;
 var hidden=0;
-var venuecost=50000;
+var venuecost=30000;
 var venue = "basement";
 //basement, shed, pub, concert,tour
 
@@ -82,6 +88,7 @@ updateValues();
 $('#drum').click(function () {
 	clicks++;
 	beat+=drum.sticks.multiplier;
+	totalbeats+=drum.sticks.multiplier;
 	beats();
 	updateValues();
 });
@@ -116,7 +123,7 @@ $('#upgradecymbals').click(function() {
 	if(dollars>=drum.cymbals.cost){
 		dollars-=drum.cymbals.cost;
 		drum.cymbals.total++;
-		drum.cymbals.cost=drum.cymbals.cost*1.5^drum.cymbals.total;
+		drum.cymbals.cost*=2^drum.cymbals.total;
 		drum.cymbals.multiplier=drum.cymbals.nextmultiplier;
 		drum.cymbals.nextmultiplier++;
 		updateValues();
@@ -142,10 +149,10 @@ $('#buydrumsticks').click(function() {
 	if(dollars>=drum.sticks.cost){
 		dollars-=drum.sticks.cost;
 		drum.sticks.total++;
-		drum.sticks.cost*=2*drum.sticks.multiplier;
+		drum.sticks.cost*=2^drum.sticks.multiplier;
 		drum.sticks.multiplier=drum.sticks.nextmultiplier;
 		drum.sticks.nextmultiplier*=2;
-		drum.sticks.fansneeded*=10;
+		drum.sticks.fansneeded=Math.floor(drum.sticks.cost*Math.pow(1.1,drum.sticks.multiplier));
 		$('.drumsticks').addClass('hidden');
 		updateValues();
 	} else{
@@ -230,28 +237,18 @@ $('#buytour').click(function() {
 
 $('#statstab').click(function(){
 		$('.info').addClass('hidden');
-		$('.gear').addClass('hidden');
 		$('.help').addClass('hidden');
 		$('.stats').removeClass('hidden');
 });
 
 $('#infotab').click(function(){
 		$('.stats').addClass('hidden');
-		$('.gear').addClass('hidden');
 		$('.help').addClass('hidden');
 		$('.info').removeClass('hidden');
 });
 
-$('#geartab').click(function(){
-		$('.stats').addClass('hidden');
-		$('.info').addClass('hidden');
-		$('.help').addClass('hidden');
-		$('.gear').removeClass('hidden');
-});
-
 $('#helptab').click(function(){
 		$('.info').addClass('hidden');
-		$('.gear').addClass('hidden');
 		$('.stats').addClass('hidden');
 		$('.help').removeClass('hidden');
 });
@@ -274,13 +271,13 @@ function beginTick() {
 
 function geartext() {
 	var str1='',str2='',str3='',str4='',str5='',str6='',str7='',str8='';
-	if(drum.snare.total) str1='<h3>Snare:</h3>'+drum.snare.multiplier+' Autobeats per second';
-	if(drum.hihat.total) str2='<h3>Hihat</h3>'+drum.hihat.multiplier+' new fans per second';
+	if(drum.snare.total) str1='<h3>Snare:</h3>'+drum.snare.multiplier+' Autobeats per second<br>Total autobeats: '+drum.snare.gathered;
+	if(drum.hihat.total) str2='<h3>Hihat</h3>'+drum.hihat.multiplier+' new fans per second<br>Total fans: '+drum.hihat.gathered;
 	if(drum.cymbals.total) str3='<h3>Cymbals</h3>$'+drum.cymbals.multiplier+' per fan';
 	if(drum.tomtoms.total) str4='<h3>Tomtoms</h3>'+drum.tomtoms.multiplier+' fans per beat cycle';
-	if(drum.sticks.total) str5='<h3>Drumsticks</h3>'+drum.sticks.multiplier+' beats per click';
+	if(drum.sticks.total) str5='<h3>Drumsticks</h3>'+drum.sticks.multiplier+' beats per click<br>Total beats: '+totalbeats;
 
-	if(guitar.total) str6='<hr><h3>Guitar</h3>Each autobeat hits '+guitar.multiplier+'times per second';
+	if(guitar.total) str6='<hr><h3>Guitar</h3>Each autobeat hits '+guitar.multiplier+' times per second';
 	if(pick.pickofdestiny) str7='<h3>Pick of Destiny</h3>Halfed beats per cycle';
 	if(bass.total) str8='<h3>Bass</h3>Beats per cycle reduced by '+bass.multiplier;
 
@@ -302,9 +299,9 @@ function updateValues(){
 	l('dollars').innerHTML= beutify(dollars);
 	l('bpf').innerHTML= beutify(Math.floor(beatsperfan*pick.multiplier));//make sure it cannot go below 1
 	l('bpf2').innerHTML= beutify(beatsperfan);
-	l('dpf').innerHTML = beutify(drum.cymbals.multiplier);
-	l('fpbc').innerHTML = beutify(drum.tomtoms.multiplier);
-	if(drum.snare.multiplier!=1) document.getElementById('s').innerHTML = 's';
+	//l('dpf').innerHTML = beutify(drum.cymbals.multiplier);
+	//l('fpbc').innerHTML = beutify(drum.tomtoms.multiplier);
+	//if(drum.snare.multiplier!=1) document.getElementById('s').innerHTML = 's';
 	l('hihatmulti').innerHTML = beutify(drum.hihat.nextmultiplier);
 	l('hihatcost').innerHTML = beutify(drum.hihat.cost);
 	l('snaremulti').innerHTML = beutify(drum.snare.nextmultiplier);
@@ -316,7 +313,7 @@ function updateValues(){
 	l('guitarcost').innerHTML = beutify(guitar.cost);
 	l('guitarmulti').innerHTML = beutify(guitar.nextmultiplier);
 	l('basscost').innerHTML = beutify(bass.cost);
-	l('fps').innerHTML = beutify(drum.tomtoms.multiplier);
+	//l('fps').innerHTML = beutify(drum.tomtoms.multiplier);
 	l('bpa').innerHTML = beutify(drum.snare.multiplier*guitar.multiplier);
 	l('drumstickscost').innerHTML = beutify(drum.sticks.cost);
 	l('guitarmulti').innerHTML = beutify(guitar.nextmultiplier);
@@ -324,8 +321,9 @@ function updateValues(){
 	l('venuecosts').innerHTML = beutify(venuecost);
 	l('venuecostp').innerHTML = beutify(venuecost);
 	l('venuecostc').innerHTML = beutify(venuecost);
-	l('bpc').innerHTML = beutify(drum.sticks.multiplier);
-	l('mffv').innerHTML = beutify(fansmax);
+	l('clicks').innerHTML = beutify(clicks);
+	//l('bpc').innerHTML = beutify(drum.sticks.multiplier);
+	//l('mffv').innerHTML = beutify(fansmax);
 	if(guitar.total>0) document.getElementById('guitartext').innerHtml = 'Upgrade';
 	geartext();
 }
@@ -441,13 +439,21 @@ function beutify(x){
 }
 
 function tick() {
-    dollars+=Math.round(Math.random()*fans*drum.cymbals.multiplier);
+    var dosh = Math.round(Math.random()*fans*drum.cymbals.multiplier);
+    dollars+= dosh;
+    totaldollars+=dosh;
+
     beat+=drum.snare.multiplier*guitar.multiplier;
+    drum.snare.gathered+=drum.snare.multiplier*guitar.multiplier;
+
    	fans+=drum.hihat.multiplier;
+   	drum.hihat.gathered+=drum.hihat.multiplier;
+   	//add case for when max fans is reached
     beats();
 	updateValues();
 	show();
 	fansMaximum();
+
 	if(hidden!=0) revealhidden();
 }
 
