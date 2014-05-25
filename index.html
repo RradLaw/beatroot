@@ -15,10 +15,10 @@
 
 <body background="img/bg.png" height="100px">
 <div class="header">
-	<div class="bassicon"><span id="bassicon"></span></div>
+	<div class="bassicon"><span id="bassicon"><img src="img/invis.png" draggable="false" height="100px" width="100px"></span></div>
 	<div class="drumicon"><img id="drum" src="img/drum.png" draggable="false"></div>
 	<!--borrowed from http://piq.codeus.net/static/media/userpics/piq_41877_400x400.png-->
-	<div class="guitaricon"><span id="guitaricon"></span></div>
+	<div class="guitaricon"><span id="guitaricon"><img src="img/invis.png" draggable="false" height="100px" width="100px"></span></div>
 </div>
 <hr>
 <div class="resources">
@@ -28,13 +28,13 @@
 	<br>
 		<button type="button" id="statstab" onmousedown='return false;'>Stats</button>
 		<button type="button" id="infotab" onmousedown='return false;'>Info</button>
-		<button type="button" id="helptab" onmousedown='return false;'>Help</button>
+		<button type="button" id="helptab" class="blinking-blue-and-red" onmousedown='return false;'>Help</button>
 	<br>
 
 </div>
 <hr>
 <div class="content">
-	<div class="info">
+	<div class="info hidden">
 		<h2>Information:</h2>
 		<div id="information"><p></p></div>
 	</div>
@@ -47,18 +47,25 @@
 			<br>
 			<span id="bpf">0</span> beats per cycle
 			<br>
-			<span id="bpa">0</span> autobeats per second
-
-		<span id="geartexts">a</span>
+			<span id="mffv">0</span> maximum fans for this venue
+		<span id="geartexts"></span>
 		<!--button type="button" id="save" onmousedown='return false;'>Save</button>
 		<button type="button" id="load" onmousedown='return false;'>Load</button>
 		<button type="button" id="reset" onmousedown='return false;'>Reset</button-->
 		</div>
 	</div>
 
-	<div class="help hidden">
+	<div class="help">
 		<h2>Help</h2>
-		<div id="helpp">Help not yet implemented.</div>
+		<div id="helpp">
+			<p>Click on the drum to produce a beat.</p>
+			<p>Once the beat limit is hit, you will get a fan.</p>
+			<p>Fans have a random chance to give you money each second.</p>
+			<p>Buy upgrades on the right for automated beats and fans per second.</p>
+			<p>Each venue has a maximum number of fans. Once this number is reached, you will get money instead of fans each time you complete a beat cycle.</p>
+			<p>This game is still in development.</p>
+			<p><a href="https://github.com/law0102/beatroot">Git repo</a></p>
+		</div>
 	</div>
 
 	<div class="drumupgrades">
