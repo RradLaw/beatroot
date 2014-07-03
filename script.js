@@ -340,6 +340,7 @@ function updateValues(){
 	l('clicks').innerHTML = beutify(clicks);
 	//l('bpc').innerHTML = beutify(drum.sticks.multiplier);
 	l('mffv').innerHTML = beutify(fansmax);
+	l('totaldollars').innerHTML = beutify(totaldollars);
 	if(guitar.total>0) document.getElementById('guitartext').innerHtml = 'Upgrade';
 	geartext();
 }
