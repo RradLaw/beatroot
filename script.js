@@ -229,7 +229,7 @@ $('#buypub').click(function() {
 	}
 });
 
-$('#buysconcert').click(function() {
+$('#buyconcert').click(function() {
 	if(dollars>=venuecost){
 		nextVenue();
 		beatsperfan--;
