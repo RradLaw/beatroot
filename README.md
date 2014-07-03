@@ -15,7 +15,6 @@ To do:
 	<li>Better scaling</li>
 	<li>Make brick background better</li>
 	<li>Sound?</li>
-	<li>info tab randomly flashes</li>
 	<li>concert upgrade twice</li>
 	<li>maximum fans randomly hidden</li>
 </ul>
