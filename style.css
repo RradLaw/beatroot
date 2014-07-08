@@ -22,7 +22,7 @@ img {
 	font-size: 30px;
 }
 .drumicon,#upgradetomtoms,#upgradesnare,#upgradehihat,#upgradecymbals,#buydrumsticks,
-#buybass,#buyguitar,#buypick
+#buybass,#buyguitar,#buypick,
 #buyshed,#buypub,#buyconcert,#buytour{
 	cursor: pointer;
 }

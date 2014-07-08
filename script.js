@@ -99,7 +99,7 @@ $('#upgradehihat').click(function() {
 	if(dollars>=drum.hihat.cost){
 		dollars-=drum.hihat.cost;
 		drum.hihat.total++;
-		drum.hihat.cost=drum.hihat.cost*1.5^drum.hihat.total;
+		drum.hihat.cost=drum.hihat.cost*Math.pow(1.5,drum.hihat.total);
 		drum.hihat.multiplier=drum.hihat.nextmultiplier;
 		drum.hihat.nextmultiplier++;
 		updateValues();
@@ -113,7 +113,7 @@ $('#upgradesnare').click(function() {
 	if(dollars>=drum.snare.cost){
 		dollars-=drum.snare.cost;
 		drum.snare.total++;
-		drum.snare.cost=drum.snare.cost*1.5^drum.snare.total;
+		drum.snare.cost=drum.snare.cost*Math.pow(1.5,drum.snare.total);
 		drum.snare.multiplier=drum.snare.nextmultiplier;
 		drum.snare.nextmultiplier++;
 		updateValues();
@@ -141,7 +141,7 @@ $('#upgradetomtoms').click(function() {
 	if(dollars>=drum.tomtoms.cost){
 		dollars-=drum.tomtoms.cost;
 		drum.tomtoms.total++;
-		drum.tomtoms.cost=drum.tomtoms.cost*2^drum.tomtoms.total;
+		drum.tomtoms.cost=drum.tomtoms.cost*Math.pow(2,drum.tomtoms.total);
 		drum.tomtoms.multiplier=drum.tomtoms.nextmultiplier;
 		drum.tomtoms.nextmultiplier++;
 		updateValues();
@@ -155,7 +155,7 @@ $('#buydrumsticks').click(function() {
 	if(dollars>=drum.sticks.cost){
 		dollars-=drum.sticks.cost;
 		drum.sticks.total++;
-		drum.sticks.cost=drum.sticks.cost*2^drum.sticks.nextmultiplier;
+		drum.sticks.cost=drum.sticks.cost*Math.pow(2,drum.sticks.nextmultiplier);
 		drum.sticks.multiplier=drum.sticks.nextmultiplier;
 		drum.sticks.nextmultiplier++;
 		drum.sticks.fansneeded=Math.floor(drum.sticks.cost*Math.pow(1.3,drum.sticks.multiplier));
@@ -172,7 +172,7 @@ $('#buyguitar').click(function() {
 		dollars-=guitar.cost;
 		if(!guitar.total)l('guitaricon').innerHTML="<img id=\"drum\" src=\"img/guitar.png\" height=\"100px\" draggable=\"false\">";
 		guitar.total++;
-		guitar.cost=guitar.cost*1.5^guitar.total;
+		guitar.cost=guitar.cost*Math.pow(1.5,guitar.total);
 		guitar.multiplier++;
 		guitar.nextmultiplier++;
 		updateValues();
@@ -229,7 +229,7 @@ $('#buypub').click(function() {
 	}
 });
 
-$('#buysconcert').click(function() {
+$('#buyconcert').click(function() {
 	if(dollars>=venuecost){
 		nextVenue();
 		beatsperfan--;
@@ -257,6 +257,7 @@ $('#statstab').click(function(){
 
 $('#infotab').click(function(){
 	informationon=false;
+	information=false;
 	$('.stats').addClass('hidden');
 	$('.help').addClass('hidden');
 	$('.info').removeClass('hidden');
@@ -340,6 +341,7 @@ function updateValues(){
 	l('clicks').innerHTML = beutify(clicks);
 	//l('bpc').innerHTML = beutify(drum.sticks.multiplier);
 	l('mffv').innerHTML = beutify(fansmax);
+	l('totaldollars').innerHTML = beutify(totaldollars);
 	if(guitar.total>0) document.getElementById('guitartext').innerHtml = 'Upgrade';
 	geartext();
 }
