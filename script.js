@@ -460,7 +460,10 @@ function revealhidden(){
 function l(a) {return document.getElementById(a);}
 
 function beutify(x){
-	return x.toString().replace(/\B(?=(\d{3})+(?!\d)(?=\.))/g, ",");
+	//hiden past decimal point
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	//code to remove commas after decimal place
+	//return x.toString().replace(/\B(?=(\d{3})+(?!\d)(?=\.))/g, ",");
 }
 
 function tick() {
